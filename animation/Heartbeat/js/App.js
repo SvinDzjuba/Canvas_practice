@@ -16,16 +16,18 @@ function beat() {
     ctx.fill();
     ctx.stroke();
     strokeWidth--;
+    console.log(strokeWidth)
     if(strokeWidth === 0) {
-        // console.log(strokeWidth)
-        setInterval(restoreLineWidth, 1000);
+        let increaseInt = setInterval(() => {
+            ctx.fill();
+            ctx.stroke();
+            strokeWidth++; 
+            if (strokeWidth > 25 || strokeWidth < 0) {
+                clearInterval(increaseInt);
+            }
+        }, 10);
     }
 }
-function restoreLineWidth() {
-    while (strokeWidth <= 25) {
-        ctx.fill();
-        ctx.stroke();
-        strokeWidth++;
-    }
+if (strokeWidth < 0 || strokeWidth === 25) {
+    setInterval(beat, 20);
 }
-setInterval(beat, 100);
