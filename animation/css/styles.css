@@ -1,0 +1,7 @@
+main {
+    width: 300px;
+    margin: 290px auto;
+}
+canvas {
+    border: 3px solid;
+}
