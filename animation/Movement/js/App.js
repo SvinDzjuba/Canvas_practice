@@ -20,7 +20,7 @@ var ball = {
     y: Math.floor(Math.random() * canvas.height),     // random y position
     vx: Math.floor(Math.random() * 6) + 1,   // random x speed
     vy: Math.floor(Math.random() * 2) + 1,   // random y speed
-    radius: Math.floor(Math.random() * 50) + 10,   // random radius
+    radius: Math.floor(Math.random() * 40) + 20,   // random radius
     color: generatedColor,  // random color
     draw: function() {  // draw the ball
         ctx.beginPath();
@@ -32,11 +32,17 @@ var ball = {
 };
 
 function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // ctx.clearRect(0, 0, canvas.width, canvas.height);       // default movement
+    
+    // smooth movement with transparent traces of the ball
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     ball.draw();
     ball.x += ball.vx;
     ball.y += ball.vy;
 
+    // bounce off canvas borders
     if(ball.y + ball.vy > canvas.height - ball.radius || ball.y + ball.vy < ball.radius) {
         ball.vy = -ball.vy;
     }
@@ -47,6 +53,7 @@ function draw() {
     window.requestAnimationFrame(draw);
 }
 
+// start canvas animation on page load
 window.addEventListener('load', (e) => {
     window.requestAnimationFrame(draw);
 });
