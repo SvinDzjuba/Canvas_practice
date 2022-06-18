@@ -5,8 +5,8 @@ var strokeWidth = 25;
 var cntr = canvas.width/2;
 
 ctx.moveTo(cntr,cntr-40);
-	ctx.bezierCurveTo(cntr+20, cntr-140, cntr+200, cntr-50, cntr, cntr+90);
-	ctx.bezierCurveTo(cntr-165, cntr-20, cntr-65, cntr-150, cntr+5, cntr-40);
+ctx.bezierCurveTo(cntr+20, cntr-140, cntr+200, cntr-50, cntr, cntr+90);
+ctx.bezierCurveTo(cntr-165, cntr-20, cntr-65, cntr-150, cntr+5, cntr-40);
 ctx.fillStyle='red';
 
 function beat() {
@@ -28,6 +28,4 @@ function beat() {
         }, 10);
     }
 }
-if (strokeWidth < 0 || strokeWidth === 25) {
-    setInterval(beat, 20);
-}
+setInterval(beat, 20);
