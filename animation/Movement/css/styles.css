@@ -1,0 +1,11 @@
+body {
+    background-color: lightblue;
+}
+main {
+    width: 1000px;
+    margin: 120px auto;
+}
+canvas {
+    background-color: white;
+    border: 2px solid gray;
+}
