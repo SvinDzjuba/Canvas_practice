@@ -1,6 +1,13 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
+// start canvas action by page load
+window.addEventListener('load', function() {
+    window.requestAnimationFrame(drawCircle);
+    window.requestAnimationFrame(drawSquare);
+});
+
+// function to make life easier :), returns a random number
 function getRandomInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -12,8 +19,8 @@ var circle = {
     y: getRandomInteger(80, canvas.height - 80),
     vx: getRandomInteger(2, 6),
     vy: getRandomInteger(1, 5),
-    radius: getRandomInteger(15, 35),
-    circleWidth: 5,
+    radius: getRandomInteger(10, 25),
+    circleWidth: getRandomInteger(2, 15),
     color: 'rgba(79,181,239,0.8)',   // light blue
     draw: function() {
         ctx.beginPath();
@@ -53,8 +60,8 @@ var square = {
     y: getRandomInteger(80, canvas.height - 80),
     vx: getRandomInteger(2, 6),
     vy: getRandomInteger(1, 5),
-    lineSize: getRandomInteger(20, 70),
-    squareWidth: 5,
+    lineSize: getRandomInteger(20, 45),
+    squareWidth: getRandomInteger(2, 6),
     color: 'rgba(229,112,0,0.8)',   // orange
     draw: function() {
         ctx.strokeStyle = this.color;
@@ -83,8 +90,42 @@ function drawSquare() {
     window.requestAnimationFrame(drawSquare);
 };
 
-// start canvas action by page load
-window.addEventListener('load', function() {
-    window.requestAnimationFrame(drawCircle);
-    window.requestAnimationFrame(drawSquare);
-});
+// CROSS
+
+var cross = {
+    x: getRandomInteger(80, canvas.width - 80),
+    y: getRandomInteger(80, canvas.height - 80),
+    vx: getRandomInteger(2, 6),
+    vy: getRandomInteger(1, 5),
+    lineSize: getRandomInteger(20, 45),
+    color: 'lightrose',
+    draw: function() {
+        ctx.beginPath();
+        ctx.lineWidth = this.lineSize;
+        ctx.moveTo(x - 20, y - 20);
+        ctx.lineTo(x + 20, y + 20);
+        
+        ctx.moveTo(x + 20, y - 20);
+        ctx.lineTo(x - 20, y + 20);
+        ctx.stroke();
+    }
+};
+function drawCross() {
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    ctx.fill();
+
+    cross.draw();
+    cross.x += cross.vx;
+    cross.y += cross.vy;
+
+    // left and right borders
+    if(cross.x + cross.vx > canvas.width - cross.lineSize || cross.x + cross.vx < 0) {
+        cross.vx = -cross.vx;
+    }
+    // top and bottom borders
+    if(cross.y + cross.vy > canvas.height - cross.lineSize || cross.y + cross.vy < 0) {
+        cross.vy = -cross.vy;
+    }
+
+    window.requestAnimationFrame(drawCross);
+}
