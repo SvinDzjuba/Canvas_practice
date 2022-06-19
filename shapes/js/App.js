@@ -21,3 +21,14 @@ for (let i = 0; i < 7; i++) {
 ctx.fillStyle = 'red';
 ctx.lineWidth = 5
 ctx.strokeRect(50,50, 200, 200);
+
+// cross
+ctx.strokeStyle = 'lightblue';
+ctx.lineWidth = 15;
+ctx.rotate(-45 * (Math.PI / 180));
+ctx.roundRect(170, 300, 90, 1, 1);
+ctx.stroke();
+
+ctx.rotate(90 * (Math.PI / 180));
+ctx.roundRect(255, -215, 90, 1, 1);
+ctx.stroke();
