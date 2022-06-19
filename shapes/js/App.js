@@ -25,10 +25,22 @@ ctx.strokeRect(50,50, 200, 200);
 // cross
 ctx.strokeStyle = 'lightblue';
 ctx.lineWidth = 15;
-ctx.rotate(-45 * (Math.PI / 180));
-ctx.roundRect(170, 300, 90, 1, 1);
-ctx.stroke();
+// ctx.rotate(-45 * (Math.PI / 180));
+// ctx.roundRect(170, 300, 90, 1, 1);
+// ctx.stroke();
 
-ctx.rotate(90 * (Math.PI / 180));
-ctx.roundRect(255, -215, 90, 1, 1);
-ctx.stroke();
+// ctx.rotate(90 * (Math.PI / 180));
+// ctx.roundRect(255, -215, 90, 1, 1);
+// ctx.stroke();
+
+function drawX(x, y) {
+    ctx.beginPath();
+
+    ctx.moveTo(x - 20, y - 20);
+    ctx.lineTo(x + 20, y + 20);
+
+    ctx.moveTo(x + 20, y - 20);
+    ctx.lineTo(x - 20, y + 20);
+    ctx.stroke();
+}
+drawX(350, 200);
