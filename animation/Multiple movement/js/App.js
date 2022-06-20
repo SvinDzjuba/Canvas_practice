@@ -5,6 +5,7 @@ var ctx = canvas.getContext('2d');
 window.addEventListener('load', function() {
     window.requestAnimationFrame(drawCircle);
     window.requestAnimationFrame(drawSquare);
+    window.requestAnimationFrame(drawCross);
 });
 
 // function to make life easier :), returns a random number
@@ -97,16 +98,17 @@ var cross = {
     y: getRandomInteger(80, canvas.height - 80),
     vx: getRandomInteger(2, 6),
     vy: getRandomInteger(1, 5),
-    lineSize: getRandomInteger(20, 45),
-    color: 'lightrose',
+    lineSize: getRandomInteger(10, 20),
+    color: 'red',
     draw: function() {
         ctx.beginPath();
         ctx.lineWidth = this.lineSize;
-        ctx.moveTo(x - 20, y - 20);
-        ctx.lineTo(x + 20, y + 20);
+        ctx.strokeStyle = this.color;
+        ctx.moveTo(this.x - 20, this.y - 20);
+        ctx.lineTo(this.x + 20, this.y + 20);
         
-        ctx.moveTo(x + 20, y - 20);
-        ctx.lineTo(x - 20, y + 20);
+        ctx.moveTo(this.x + 20, this.y - 20);
+        ctx.lineTo(this.x - 20, this.y + 20);
         ctx.stroke();
     }
 };
