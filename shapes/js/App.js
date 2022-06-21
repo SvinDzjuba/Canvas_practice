@@ -22,7 +22,8 @@ ctx.fillStyle = 'red';
 ctx.lineWidth = 5
 ctx.strokeRect(50,50, 200, 200);
 
-// cross
+// cross 1
+
 ctx.strokeStyle = 'lightblue';
 ctx.lineWidth = 15;
 // ctx.rotate(-45 * (Math.PI / 180));
@@ -33,14 +34,33 @@ ctx.lineWidth = 15;
 // ctx.roundRect(255, -215, 90, 1, 1);
 // ctx.stroke();
 
-function drawX(x, y) {
-    ctx.beginPath();
 
-    ctx.moveTo(x - 20, y - 20);
-    ctx.lineTo(x + 20, y + 20);
+// cross 2
 
-    ctx.moveTo(x + 20, y - 20);
-    ctx.lineTo(x - 20, y + 20);
-    ctx.stroke();
-}
-drawX(350, 200);
+// function drawX(x, y) {
+//     ctx.beginPath();
+
+//     ctx.strokeStyle = 'black';
+//     ctx.moveTo(x - 20, y - 20);
+//     ctx.lineTo(x + 20, y + 20);
+
+//     ctx.moveTo(x + 20, y - 20);
+//     ctx.lineTo(x - 20, y + 20);
+//     ctx.stroke();
+// }
+// drawX(80, 80);
+
+
+// cross 3
+
+// Non-rotated rectangle
+ctx.fillStyle = 'gray';
+ctx.fillRect(80, 60, 100, 15);
+
+// Matrix transformation
+ctx.translate(150, 75);
+ctx.rotate(Math.PI / 2);
+ctx.translate(-135, -50);
+
+// Rotated rectangle
+ctx.fillRect(80, 60, 100, 15);
