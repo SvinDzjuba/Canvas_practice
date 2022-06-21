@@ -98,35 +98,31 @@ var cross = {
     y: getRandomInteger(80, canvas.height - 80),
     vx: getRandomInteger(2, 6),
     vy: getRandomInteger(1, 5),
-    angle: getRandomInteger(0, Math.PI * 2),
-    lineSize: getRandomInteger(10, 20),
+    // spin: Math.random() < 0.5 ? -1 : 1,
+    lineSize: getRandomInteger(5, 10),
     color: 'red',
     draw: function() {
-        ctx.beginPath();
-        ctx.lineWidth = this.lineSize;
-        ctx.strokeStyle = this.color;
-        ctx.moveTo(this.x - 20, this.y - 20);
-        ctx.lineTo(this.x + 20, this.y + 20);
-        
-        ctx.moveTo(this.x + 20, this.y - 20);
-        ctx.lineTo(this.x - 20, this.y + 20);
-        ctx.stroke();
-    }
+        // Non-rotated rectangle
+        ctx.fillStyle = this.color;
+        ctx.fillRect(80, 60, 140, 30);
+
+        // Matrix transformation
+        ctx.translate(150, 75);
+        ctx.rotate(Math.PI / 2);
+        ctx.translate(-150, -75);
+
+        // Rotated rectangle
+        ctx.fillRect(80, 60, 140, 30);
+    },
 };
 function drawCross() {
+    // ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'rgba(255,255,255,0.3)';
     ctx.fill();
-
+    
     cross.draw();
-    cross.x += cross.vx;
-    cross.y += cross.vy;
-    cross.angle += cross.speed;
-    cross.angle %= Math.PI * 2;
-
-    ctx.save();
-    ctx.translate(cross.x, cross.y);
-    ctx.rotate(2);
-    // ctx.restore();
+    cross.x -= cross.vx;
+    cross.y -= cross.vy;
 
     // left and right borders
     if(cross.x + cross.vx > canvas.width - cross.lineSize || cross.x + cross.vx < 0) {
