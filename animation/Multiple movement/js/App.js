@@ -98,6 +98,7 @@ var cross = {
     y: getRandomInteger(80, canvas.height - 80),
     vx: getRandomInteger(2, 6),
     vy: getRandomInteger(1, 5),
+    angle: getRandomInteger(0, Math.PI * 2),
     lineSize: getRandomInteger(10, 20),
     color: 'red',
     draw: function() {
@@ -119,6 +120,13 @@ function drawCross() {
     cross.draw();
     cross.x += cross.vx;
     cross.y += cross.vy;
+    cross.angle += cross.speed;
+    cross.angle %= Math.PI * 2;
+
+    ctx.save();
+    ctx.translate(cross.x, cross.y);
+    ctx.rotate(2);
+    // ctx.restore();
 
     // left and right borders
     if(cross.x + cross.vx > canvas.width - cross.lineSize || cross.x + cross.vx < 0) {
